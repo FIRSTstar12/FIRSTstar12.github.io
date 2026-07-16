@@ -5,240 +5,100 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>About — Stella</title>
-
     <style>
         :root {
             --matrix-green: #00ff41;
-            --overlay-bg: rgba(0, 0, 0, 0.65);
-        }
-
-        * {
-            box-sizing: border-box;
+            --overlay-bg: rgba(0, 0, 0, 0.65)
         }
 
         html,
         body {
-            min-height: 100%;
-            margin: 0;
+            height: 100%;
+            margin: 0
         }
 
         body {
             background: #000;
             color: var(--matrix-green);
-            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco,
-                "Roboto Mono", "Segoe UI Mono", monospace;
-            padding: 10px;
-            overflow-x: hidden;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono", monospace;
+            padding: 20px;
+            overflow-x: hidden
         }
 
         #matrix {
             position: fixed;
             inset: 0;
-            z-index: 0;
+            z-index: 0
         }
 
         .overlay {
             position: relative;
             z-index: 2;
             max-width: 900px;
-            margin: 0 auto;
+            margin: 0 auto
         }
 
         .content-box {
             background: var(--overlay-bg);
-            padding: 14px;
-            border-radius: 8px;
+            padding: 18px;
+            border-radius: 8px
         }
 
         h1,
         h2,
         p {
-            color: var(--matrix-green);
-        }
-
-        h1 {
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
-
-        p {
-            line-height: 1.5;
-            margin-top: 8px;
-            margin-bottom: 12px;
+            color: var(--matrix-green)
         }
 
         a,
         a:visited {
-            color: var(--matrix-green);
-        }
-
-        nav {
-            margin-bottom: 12px;
-        }
-
-        .about-top {
-            display: grid;
-            grid-template-columns: 1fr 280px;
-            gap: 18px;
-            align-items: start;
-        }
-
-        .about-image {
-            width: 100%;
-            max-width: 280px;
-            border-radius: 8px;
-            border: 1px solid rgba(0, 255, 65, 0.18);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-            display: block;
-            margin: 0 auto;
-        }
-
-        .about-body {
-            margin-top: 10px;
-        }
-
-        @media (max-width: 860px) {
-            .about-top {
-                grid-template-columns: 1fr;
-            }
-
-            .about-image {
-                max-width: 300px;
-                margin: 10px auto;
-            }
+            color: var(--matrix-green)
         }
     </style>
 </head>
 
 <body>
-
     <canvas id="matrix"></canvas>
-
     <div class="overlay">
         <div class="content-box">
+            <nav><a href="index.html">Home</a> · <a href="projects.html">Projects</a> · <a
+                    href="gallery.html">Gallery</a></nav>
+            <h1>About Me</h1>
+            <p>Hi! I'm Stella, a high school student, programmer, and aspiring engineer with a passion for robotics,
+                software development, and solving challenging problems.</p>
 
-            <nav>
-                <a href="index.html">Home</a> ·
-                <a href="experience.html">Experience</a> ·
-                <a href="projects.html">Projects</a> ·
-                <a href="contact.html">Contact</a> ·
-                <a href="gallery.html">Gallery</a>
-            </nav>
+            <p>As a member of my FIRST Robotics Competition team, I contribute to the development of robot software,
+                autonomous routines, and data analysis tools that help improve performance both on and off the field. I
+                also serve as our team's <strong>Outreach Lead</strong>, where I organize community engagement efforts,
+                build partnerships, and help inspire the next generation of students to explore STEM through robotics.
+            </p>
 
-            <div class="about-top">
+            <p>I enjoy working with Java and Python, building projects that combine programming, engineering, and data
+                to turn ideas into reality. Whether I'm developing software, analyzing match statistics, or
+                collaborating with teammates on new ideas, I love tackling challenges and learning something new along
+                the way.</p>
 
-                <div>
-                    <h1>About Me</h1>
+            <p>Outside of robotics, I enjoy reading, writing, playing tennis, and exploring new technologies. From
+                experimenting with Raspberry Pis to creating personal programming projects, I'm always looking for
+                opportunities to grow, create, and make a positive impact through technology.</p>
 
-                    <p>
-                        Hi! I'm Stella, a high school student, programmer, and aspiring engineer
-                        with a passion for robotics, software development, and solving challenging
-                        problems.
-                    </p>
-                </div>
-
-                <img class="about-image"
-                    src="images/DSC_0004.jpg"
-                    alt="Stella">
-            </div>
-
-
-            <div class="about-body">
-
-                <p>
-                    As a member of my FIRST Robotics Competition team, I contribute to the
-                    development of robot software, autonomous routines, and data analysis tools
-                    that help improve performance both on and off the field. I also serve as our
-                    team's <strong>Outreach Lead</strong>, where I organize community engagement
-                    efforts, build partnerships, and help inspire the next generation of students
-                    to explore STEM through robotics.
-                </p>
-
-                <p>
-                    I enjoy working with Java and Python, building projects that combine
-                    programming, engineering, and data to turn ideas into reality. Whether I'm
-                    developing software, analyzing match statistics, or collaborating with
-                    teammates on new ideas, I love tackling challenges and learning something new
-                    along the way.
-                </p>
-
-                <p>
-                    Outside of robotics, I enjoy reading, writing, playing tennis, and exploring
-                    new technologies. From experimenting with Raspberry Pis to creating personal
-                    programming projects, I'm always looking for opportunities to grow, create,
-                    and make a positive impact through technology.
-                </p>
-
-                <p>
-                    As I continue my journey in engineering and computer science, I'm excited to
-                    keep learning, collaborating with others, and using technology to solve
-                    real-world problems.
-                </p>
-
-            </div>
-
+            <p>As I continue my journey in engineering and computer science, I'm excited to keep learning, collaborating
+                with others, and using technology to solve real-world problems.</p>
         </div>
     </div>
-
 
     <script>
         (function () {
             const canvas = document.getElementById('matrix');
             const ctx = canvas.getContext('2d');
-
-            let W = canvas.width = innerWidth;
-            let H = canvas.height = innerHeight;
-
-            const fontSize = 18;
-            const columns = Math.floor(W / fontSize) + 1;
-            const drops = new Array(columns).fill(0);
-
-            const chars =
-                'アィゥェォャュョッカタサナハマヤラワ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%&*()';
-
-            function resize() {
-                W = canvas.width = innerWidth;
-                H = canvas.height = innerHeight;
-            }
-
+            let W = canvas.width = innerWidth; let H = canvas.height = innerHeight; const fontSize = 18; const columns = Math.floor(W / fontSize) + 1; const drops = new Array(columns).fill(0);
+            const chars = 'アィゥェォャュョッカタサナハマヤラワ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%&*()';
+            function resize() { W = canvas.width = innerWidth; H = canvas.height = innerHeight }
             window.addEventListener('resize', resize);
-
-            function draw() {
-
-                ctx.fillStyle = 'rgba(0,0,0,0.06)';
-                ctx.fillRect(0, 0, W, H);
-
-                ctx.fillStyle =
-                    getComputedStyle(document.documentElement)
-                    .getPropertyValue('--matrix-green') || '#00ff41';
-
-                ctx.font = fontSize + 'px monospace';
-
-                for (let i = 0; i < drops.length; i++) {
-
-                    const text =
-                        chars.charAt(Math.floor(Math.random() * chars.length));
-
-                    const x = i * fontSize;
-                    const y = drops[i] * fontSize;
-
-                    ctx.fillText(text, x, y);
-
-                    if (y > H && Math.random() > 0.975) {
-                        drops[i] = 0;
-                    }
-
-                    drops[i]++;
-                }
-
-                requestAnimationFrame(draw);
-            }
-
+            function draw() { ctx.fillStyle = 'rgba(0,0,0,0.06)'; ctx.fillRect(0, 0, W, H); ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--matrix-green') || '#00ff41'; ctx.font = fontSize + 'px monospace'; for (let i = 0; i < drops.length; i++) { const text = chars.charAt(Math.floor(Math.random() * chars.length)); const x = i * fontSize; const y = drops[i] * fontSize; ctx.fillText(text, x, y); if (y > H && Math.random() > 0.975) drops[i] = 0; drops[i]++ } requestAnimationFrame(draw) }
             draw();
-
         })();
     </script>
-
 </body>
 
 </html>
