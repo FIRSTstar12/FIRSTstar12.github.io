@@ -4,11 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Gallery — Stella</title>
+    <title>Contact — Stella</title>
     <style>
         :root {
             --matrix-green: #00ff41;
-            --overlay-bg: rgba(0, 0, 0, 0.75);
+            --overlay-bg: rgba(0, 0, 0, 0.65);
         }
 
         html,
@@ -34,20 +34,21 @@
         .overlay {
             position: relative;
             z-index: 2;
-            max-width: 1100px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
         .content-box {
             background: var(--overlay-bg);
-            padding: 20px;
-            border-radius: 10px;
+            padding: 18px;
+            border-radius: 8px;
         }
 
         h1,
         h2,
         p,
-        a {
+        a,
+        .contact-item {
             color: var(--matrix-green);
         }
 
@@ -56,41 +57,21 @@
             color: var(--matrix-green);
         }
 
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 18px;
-            margin-top: 18px;
+        .contact-list {
+            list-style: none;
+            padding: 0;
+            margin: 18px 0 0;
         }
 
-        img {
-            opacity: 0;
-            animation: fadeIn 0.9s ease forwards;
+        .contact-item {
+            margin-bottom: 12px;
+            line-height: 1.8;
         }
 
-        .gallery img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-            border: 1px solid rgba(0, 255, 65, 0.18);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-        }
-
-        .note {
+        .contact-item strong {
+            display: inline-block;
+            width: 100px;
             opacity: 0.85;
-            margin-top: 10px;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(18px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
     </style>
 </head>
@@ -100,24 +81,31 @@
     <div class="overlay">
         <div class="content-box">
             <nav><a href="index.html">Home</a> · <a href="about.html">About</a> · <a
-                    href="experience.html">Experience</a> · <a href="resume.html">Resume</a> · <a
-                    href="contact.html">Contact</a> · <a href="projects.html">Projects</a>
-            </nav>
-            <h1>Gallery</h1>
-            <p class="note">Browse larger versions of the site images below.</p>
-            <div class="gallery">
-                <img src="images/IMG_3781.jpg" alt="IMG_3781">
-                <img src="images/IMG_2640.jpg" alt="IMG_2640">
-                <img src="images/IMG_2429.jpg" alt="IMG_2429">
-                <img src="images/IMG_2428.jpg" alt="IMG_2428">
-                <img src="images/IMG_1981.jpg" alt="IMG_1981">
-                <img src="images/IMG_1965.jpg" alt="IMG_1965">
-                <img src="images/IMG_1774.jpg" alt="IMG_1774">
-                <img src="images/IMG_1772.jpg" alt="IMG_1772">
-                <img src="images/IMG_1642.jpg" alt="IMG_1642">
-                <img src="images/DSC_0072.jpg" alt="DSC_0072">
-                <img src="images/Screenshot 2026-07-16 143612.png" alt="Computer Vision Screenshot">
-            </div>
+                    href="experience.html">Experience</a> · <a href="projects.html">Projects</a> · <a
+                    href="resume.html">Resume</a> · <a href="gallery.html">Gallery</a></nav>
+            <section class="contact">
+                <h1>Let's Connect</h1>
+
+                <p>
+                    I'm always interested in connecting with people interested in robotics,
+                    software development, STEM, and engineering. Feel free to reach out if
+                    you'd like to discuss projects, collaboration, or opportunities.
+                </p>
+
+                <div class="contact-links">
+                    <a href="mailto:stellamurphysoftwaredev@gmail.com">
+                        Email
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/stella-murphy-29ab03422/" target="_blank">
+                        LinkedIn
+                    </a>
+
+                    <a href="https://github.com/FIRSTstar12" target="_blank">
+                        GitHub
+                    </a>
+                </div>
+            </section>
         </div>
     </div>
     <script>
@@ -133,7 +121,7 @@
             function resize() { W = canvas.width = innerWidth; H = canvas.height = innerHeight; }
             window.addEventListener('resize', resize);
             function draw() {
-                ctx.fillStyle = 'rgba(0,0,0,0.06)';
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.06)';
                 ctx.fillRect(0, 0, W, H);
                 ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--matrix-green') || '#00ff41';
                 ctx.font = fontSize + 'px monospace';

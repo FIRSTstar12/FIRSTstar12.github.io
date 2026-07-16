@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Experience — Stella</title>
+    <style>
+        :root {
+            --matrix-green: #00ff41;
+            --overlay-bg: rgba(0, 0, 0, 0.65);
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            background: #000;
+            color: var(--matrix-green);
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono", monospace;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        #matrix {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .overlay {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .content-box {
+            background: var(--overlay-bg);
+            padding: 18px;
+            border-radius: 8px;
+        }
+
+        h1,
+        h2,
+        p,
+        a {
+            color: var(--matrix-green);
+        }
+
+        a,
+        a:visited {
+            color: var(--matrix-green);
+        }
+
+        .experience-list {
+            display: grid;
+            gap: 18px;
+            margin-top: 18px;
+        }
+
+        .experience-card {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 255, 65, 0.18);
+            border-radius: 10px;
+            padding: 18px;
+        }
+
+        .experience-card h2 {
+            margin-top: 0;
+            font-size: 1.35rem;
+        }
+
+        .experience-card p {
+            line-height: 1.8;
+            margin: 0.6rem 0;
+        }
+
+        .role-meta {
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="matrix"></canvas>
+    <div class="overlay">
+        <div class="content-box">
+            <nav><a href="index.html">Home</a> · <a href="about.html">About</a> · <a href="projects.html">Projects</a> ·
+                <a href="resume.html">Resume</a> · <a href="contact.html">Contact</a> · <a
+                    href="gallery.html">Gallery</a>
+            </nav>
+            <h1>Experience</h1>
+            <section class="experience">
+                <div class="experience-item">
+                    <h2>Up-A-Creek Robotics | FIRST Robotics Competition</h2>
+                    <p class="meta">Team Member • Outreach Lead • Software Contributor | 2024 - Present</p>
+                    <p>
+                        As a member of Up-A-Creek Robotics, I contribute to the design, programming,
+                        and strategy of our FIRST Robotics Competition robot. I have developed software
+                        using Java and WPILib, including autonomous routines, robot control systems,
+                        and computer vision features.
+                    </p>
+                    <p>
+                        In my role as Outreach Lead, I organize community engagement initiatives,
+                        promote STEM education, and help expand the impact of our robotics program.
+                        I collaborate with teammates to connect robotics with the broader community
+                        and inspire future engineers.
+                    </p>
+                </div>
+
+                <div class="experience-item">
+                    <h2>Colorado School of Mines Internship</h2>
+                    <p class="meta">Robotics Intern | 2025</p>
+                    <p>
+                        During my internship at the Colorado School of Mines, I worked on autonomous
+                        robotics projects involving a Kobuki mobile robot. I developed a line-following
+                        system that used sensor feedback and control logic to enable the robot to
+                        navigate a marked path autonomously.
+                    </p>
+                    <p>
+                        This experience strengthened my skills in robotics, programming, debugging,
+                        and applying engineering concepts to real-world systems.
+                    </p>
+                </div>
+
+                <div class="experience-item">
+                    <h2>Niwot High School Mock Trial</h2>
+                    <p class="meta">Defense Attorney | 2025 - Present</p>
+                    <p>
+                        As a member of my school's Mock Trial team, I develop skills in research,
+                        public speaking, critical thinking, and presenting arguments under pressure.
+                        I have competed at the regional and state levels, earning 2nd place at the
+                        Boulder Regional competition and 4th place at the Colorado State competition.
+                    </p>
+                </div>
+
+                <div class="experience-item">
+                    <h2>Best Buy</h2>
+                    <p class="meta">Sales Advisor | 2025 - Present</p>
+                    <p>
+                        As a Sales Advisor at Best Buy, I help customers find technology solutions
+                        that fit their needs while developing communication, problem-solving, and
+                        customer service skills. I assist customers in understanding products,
+                        comparing options, and making informed decisions about technology.
+                    </p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            const canvas = document.getElementById('matrix');
+            const ctx = canvas.getContext('2d');
+            let W = canvas.width = innerWidth;
+            let H = canvas.height = innerHeight;
+            const fontSize = 18;
+            const columns = Math.floor(W / fontSize) + 1;
+            const drops = new Array(columns).fill(0);
+            const chars = 'アィゥェォャュョッカタサナハマヤラワ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%&*()';
+            function resize() { W = canvas.width = innerWidth; H = canvas.height = innerHeight; }
+            window.addEventListener('resize', resize);
+            function draw() {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.06)';
+                ctx.fillRect(0, 0, W, H);
+                ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--matrix-green') || '#00ff41';
+                ctx.font = fontSize + 'px monospace';
+                for (let i = 0; i < drops.length; i++) {
+                    const text = chars.charAt(Math.floor(Math.random() * chars.length));
+                    const x = i * fontSize;
+                    const y = drops[i] * fontSize;
+                    ctx.fillText(text, x, y);
+                    if (y > H && Math.random() > 0.975) drops[i] = 0;
+                    drops[i]++;
+                }
+                requestAnimationFrame(draw);
+            }
+            draw();
+        })();
+    </script>
+</body>
+
+</html>
