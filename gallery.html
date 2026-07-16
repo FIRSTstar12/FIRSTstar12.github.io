@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gallery — Stella</title>
+    <style>
+        :root {
+            --matrix-green: #00ff41;
+            --overlay-bg: rgba(0, 0, 0, 0.75);
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            background: #000;
+            color: var(--matrix-green);
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono", monospace;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        #matrix {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .overlay {
+            position: relative;
+            z-index: 2;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .content-box {
+            background: var(--overlay-bg);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        h1,
+        h2,
+        p,
+        a {
+            color: var(--matrix-green);
+        }
+
+        a,
+        a:visited {
+            color: var(--matrix-green);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 18px;
+            margin-top: 18px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 255, 65, 0.18);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        .note {
+            opacity: 0.85;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="matrix"></canvas>
+    <div class="overlay">
+        <div class="content-box">
+            <nav><a href="index.html">Home</a> · <a href="about.html">About</a> · <a href="projects.html">Projects</a>
+            </nav>
+            <h1>Gallery</h1>
+            <p class="note">Browse larger versions of the site images below.</p>
+            <div class="gallery">
+                <img src="images/IMG_3781.jpg" alt="IMG_3781">
+                <img src="images/IMG_2640.jpg" alt="IMG_2640">
+                <img src="images/IMG_2429.jpg" alt="IMG_2429">
+                <img src="images/IMG_2428.jpg" alt="IMG_2428">
+                <img src="images/IMG_1981.jpg" alt="IMG_1981">
+                <img src="images/IMG_1965.jpg" alt="IMG_1965">
+                <img src="images/IMG_1774.jpg" alt="IMG_1774">
+                <img src="images/IMG_1772.jpg" alt="IMG_1772">
+                <img src="images/IMG_1642.jpg" alt="IMG_1642">
+                <img src="images/DSC_0072.jpg" alt="DSC_0072">
+                <img src="images/Screenshot 2026-07-16 143612.png" alt="Computer Vision Screenshot">
+            </div>
+        </div>
+    </div>
+    <script>
+        (function () {
+            const canvas = document.getElementById('matrix');
+            const ctx = canvas.getContext('2d');
+            let W = canvas.width = innerWidth;
+            let H = canvas.height = innerHeight;
+            const fontSize = 18;
+            const columns = Math.floor(W / fontSize) + 1;
+            const drops = new Array(columns).fill(0);
+            const chars = 'アィゥェォャュョッカタサナハマヤラワ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%&*()';
+            function resize() { W = canvas.width = innerWidth; H = canvas.height = innerHeight; }
+            window.addEventListener('resize', resize);
+            function draw() {
+                ctx.fillStyle = 'rgba(0,0,0,0.06)';
+                ctx.fillRect(0, 0, W, H);
+                ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--matrix-green') || '#00ff41';
+                ctx.font = fontSize + 'px monospace';
+                for (let i = 0; i < drops.length; i++) {
+                    const text = chars.charAt(Math.floor(Math.random() * chars.length));
+                    const x = i * fontSize;
+                    const y = drops[i] * fontSize;
+                    ctx.fillText(text, x, y);
+                    if (y > H && Math.random() > 0.975) drops[i] = 0;
+                    drops[i]++;
+                }
+                requestAnimationFrame(draw);
+            }
+            draw();
+        })();
+    </script>
+</body>
+
+</html>
