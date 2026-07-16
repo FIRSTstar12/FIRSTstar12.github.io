@@ -6,9 +6,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>FIRSTstar's Website</title>
   <style>
+    :root {
+      --matrix-green: #00ff41;
+      --overlay-bg: rgba(0, 0, 0, 0.65)
+    }
+
+    html,
     body {
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      padding: 20px
+      height: 100%;
+      margin: 0
+    }
+
+    body {
+      background: #000;
+      color: var(--matrix-green);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono", monospace;
+      padding: 20px;
+      overflow-x: hidden
+    }
+
+    #matrix {
+      position: fixed;
+      inset: 0;
+      z-index: 0
+    }
+
+    .overlay {
+      position: relative;
+      z-index: 2;
+      max-width: 1100px;
+      margin: 0 auto
+    }
+
+    h1,
+    h2,
+    p {
+      color: var(--matrix-green);
+      text-shadow: 0 0 8px rgba(0, 255, 65, 0.08)
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0
+    }
+
+    p {
+      opacity: 0.9
+    }
+
+    .content-box {
+      background: var(--overlay-bg);
+      padding: 18px;
+      border-radius: 8px
     }
 
     .gallery {
@@ -21,31 +70,74 @@
     .gallery img {
       max-width: 200px;
       height: auto;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12)
+      border-radius: 6px;
+      border: 1px solid rgba(0, 255, 65, 0.12);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6)
+    }
+
+    a,
+    a:visited {
+      color: var(--matrix-green)
     }
   </style>
 </head>
 
 <body>
-  <h1>Hello, world! I'm FIRSTstar 👋</h1>
-  <p>This is my corner of the internet.</p>
-  <p>Built at the CS@Mines summer program. Check back this afternoon, it's about to get way better.</p>
-  <section id="gallery">
-    <h2>Gallery</h2>
-    <div class="gallery">
-      <img src="IMG_3781.jpg" alt="IMG_3781">
-      <img src="IMG_2640.jpg" alt="IMG_2640">
-      <img src="IMG_2429.jpg" alt="IMG_2429">
-      <img src="IMG_2428.jpg" alt="IMG_2428">
-      <img src="IMG_1981.jpg" alt="IMG_1981">
-      <img src="IMG_1965.jpg" alt="IMG_1965">
-      <img src="IMG_1774.jpg" alt="IMG_1774">
-      <img src="IMG_1772.jpg" alt="IMG_1772">
-      <img src="IMG_1642.jpg" alt="IMG_1642">
-      <img src="DSC_0072.jpg" alt="DSC_0072">
+  <canvas id="matrix"></canvas>
+  <div class="overlay">
+    <div class="content-box">
+      <h1>Hello, world! I'm FIRSTstar 👋</h1>
+      <p>This is my corner of the internet.</p>
+      <p>Built at the CS@Mines summer program. Check back this afternoon, it's about to get way better.</p>
+      <section id="gallery">
+        <h2>Gallery</h2>
+        <div class="gallery">
+          <img src="images/IMG_3781.jpg" alt="IMG_3781">
+          <img src="images/IMG_2640.jpg" alt="IMG_2640">
+          <img src="images/IMG_2429.jpg" alt="IMG_2429">
+          <img src="images/IMG_2428.jpg" alt="IMG_2428">
+          <img src="images/IMG_1981.jpg" alt="IMG_1981">
+          <img src="images/IMG_1965.jpg" alt="IMG_1965">
+          <img src="images/IMG_1774.jpg" alt="IMG_1774">
+          <img src="images/IMG_1772.jpg" alt="IMG_1772">
+          <img src="images/IMG_1642.jpg" alt="IMG_1642">
+          <img src="images/DSC_0072.jpg" alt="DSC_0072">
+        </div>
+      </section>
     </div>
-  </section>
+  </div>
+  <script>
+    (function () {
+      const canvas = document.getElementById('matrix');
+      const ctx = canvas.getContext('2d');
+      let W = canvas.width = innerWidth;
+      let H = canvas.height = innerHeight;
+      const fontSize = 18;
+      const columns = Math.floor(W / fontSize) + 1;
+      const drops = new Array(columns).fill(0);
+      const chars = 'アィゥェォャュョッカタサナハマヤラワ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%&*()';
+      function resize() {
+        W = canvas.width = innerWidth; H = canvas.height = innerHeight;
+      }
+      window.addEventListener('resize', resize);
+      function draw() {
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.06)';
+        ctx.fillRect(0, 0, W, H);
+        ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--matrix-green') || '#00ff41';
+        ctx.font = fontSize + 'px monospace';
+        for (let i = 0; i < drops.length; i++) {
+          const text = chars.charAt(Math.floor(Math.random() * chars.length));
+          const x = i * fontSize;
+          const y = drops[i] * fontSize;
+          ctx.fillText(text, x, y);
+          if (y > H && Math.random() > 0.975) drops[i] = 0;
+          drops[i]++;
+        }
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
+  </script>
 </body>
 
 </html>
