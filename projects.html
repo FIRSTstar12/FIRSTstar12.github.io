@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>About — Stella</title>
+    <title>Projects — Stella</title>
     <style>
         :root {
             --matrix-green: #00ff41;
@@ -54,6 +54,15 @@
         a:visited {
             color: var(--matrix-green)
         }
+
+        .project {
+            margin-bottom: 14px
+        }
+
+        .meta {
+            opacity: 0.85;
+            font-size: 0.95rem
+        }
     </style>
 </head>
 
@@ -61,28 +70,23 @@
     <canvas id="matrix"></canvas>
     <div class="overlay">
         <div class="content-box">
-            <nav><a href="index.html">Home</a> · <a href="projects.html">Projects</a></nav>
-            <h1>About Me</h1>
-            <p>Hi! I'm Stella, a high school student, programmer, and aspiring engineer with a passion for robotics,
-                software development, and solving challenging problems.</p>
+            <nav><a href="index.html">Home</a> · <a href="about.html">About</a></nav>
+            <h1>Projects</h1>
 
-            <p>As a member of my FIRST Robotics Competition team, I contribute to the development of robot software,
-                autonomous routines, and data analysis tools that help improve performance both on and off the field. I
-                also serve as our team's <strong>Outreach Lead</strong>, where I organize community engagement efforts,
-                build partnerships, and help inspire the next generation of students to explore STEM through robotics.
-            </p>
+            <div class="project">
+                <h2>FRC Team Analytics Platform</h2>
+                <p class="meta">
+                    Python, Requests, REST APIs, Data Analysis | <a href="#">GitHub</a>
+                </p>
+                <p>
+                    An ongoing Python project that analyzes FIRST Robotics Competition data using The Blue Alliance API.
+                    It provides detailed team
+                    statistics, performance analysis, and event insights, with planned features including match
+                    prediction, advanced ranking algorithms,
+                    OPR/EPA integration, and interactive scouting dashboards.
+                </p>
+            </div>
 
-            <p>I enjoy working with Java and Python, building projects that combine programming, engineering, and data
-                to turn ideas into reality. Whether I'm developing software, analyzing match statistics, or
-                collaborating with teammates on new ideas, I love tackling challenges and learning something new along
-                the way.</p>
-
-            <p>Outside of robotics, I enjoy reading, writing, playing tennis, and exploring new technologies. From
-                experimenting with Raspberry Pis to creating personal programming projects, I'm always looking for
-                opportunities to grow, create, and make a positive impact through technology.</p>
-
-            <p>As I continue my journey in engineering and computer science, I'm excited to keep learning, collaborating
-                with others, and using technology to solve real-world problems.</p>
         </div>
     </div>
 
